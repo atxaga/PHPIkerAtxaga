@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="form.php" method="post">
+        <label for="izena">Izena: </label><input type="text" name="izena" id=""><br><br>
+        <label for="deskripzioa">Deskripzioa: </label><textarea name="deskripzioa" id=""></textarea><br><br>
+        <label for="">Gizona<input type="radio" name="generoa" id="" value="gizona"></label>
+        <label for="">Emakumea<input type="radio" name="generoa" id="" value="emakumea"></label><br><br>
+        <label for="adina">Adina: </label><select name="adina" id="">
+            <option value="+18">+18</option>
+            <option value="-18">-18</option>
+        </select><br><br>
+        <label for="fitxategia">Argazkia: </label><input type="file" name="argazkia" id=""><br><br>
+        <label for="email">Email: </label><input type="email" name="email" id=""><br><br>
+        <label for="password">Password: </label><input type="password" name="password" id="">
+        <input type="submit" value="bidali" name="bidali">
+        
+    </form>
+</body>
+</html>
