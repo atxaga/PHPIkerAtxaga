@@ -7,19 +7,20 @@
 </head>
 <body>
     <form action="form.php" method="post">
-        <label for="izena">Izena: </label><input type="text" name="izena" id=""><br><br>
-        <label for="deskripzioa">Deskripzioa: </label><textarea name="deskripzioa" id=""></textarea><br><br>
-        <label for="">Gizona<input type="radio" name="generoa" id="" value="gizona"></label>
-        <label for="">Emakumea<input type="radio" name="generoa" id="" value="emakumea"></label><br><br>
-        <label for="adina">Adina: </label><select name="adina" id="">
+        <label for="izena">Izena: </label><input type="text" name="izena" id="" required><br><br>
+        <label for="deskripzioa">Deskripzioa: </label><textarea name="deskripzioa" id="" required></textarea><br><br>
+        <label for="">Gizona<input type="radio" name="generoa" id="" value="gizona" required></label>
+        <label for="">Emakumea<input type="radio" name="generoa" id="" value="emakumea" required></label><br><br>
+        <label for="adina">Adina: </label><select name="adina" id="" required>
             <option value="+18">+18</option>
             <option value="-18">-18</option>
         </select><br><br>
-        <label for="fitxategia">Argazkia: </label><input type="file" name="argazkia" id=""><br><br>
-        <label for="email">Email: </label><input type="email" name="email" id=""><br><br>
-        <label for="password">Password: </label><input type="password" name="password" id="">
+        <label for="fitxategia">Argazkia: </label><input type="file" name="argazkia" id="" required><br><br>
+        <label for="email">Email: </label><input type="email" name="email" id="" required><br><br>
+        <label for="password">Password: </label><input type="password" name="password" id="" required>
         <input type="submit" value="bidali" name="bidali">
         
     </form>
+    <img src=""  alt="">
 </body>
 </html>
