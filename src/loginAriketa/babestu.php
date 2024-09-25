@@ -8,8 +8,8 @@
 <body>
     <form action="form.php" method="post">
         <label for="erabiltzailea"> Erabiltzailea: </label><input type="text" name="erabiltzailea" id=""><br><br>
-        <label for="password">Pasahitza: </label><input type="password" name="pasahitza id=""><br><br>
+        <label for="password">Pasahitza: </label><input type="password" name="pasahitza" id=""><br><br>
         <input type="submit" value="Bidali" name="bidali">
-    </form>
+    </form> 
 </body>
 </html>
