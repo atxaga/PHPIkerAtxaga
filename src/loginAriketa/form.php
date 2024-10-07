@@ -1,14 +1,39 @@
 <?php
 
-    session_start();
+session_start();
 
-    $_SESSION['erabiltzailea'] = $_POST['erabiltzailea'];
-    $_SESSION['pasahitza'] = password_hash($_POST['pasahitza'], PASSWORD_DEFAULT);
+$servername = "db";
+$username = "root";
+$password = "root";
+$dbname = "myDB";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Obtener datos del formulario
+$erabiltzailea = $_POST['erabiltzailea'];
+$pasahitza = $_POST['pasahitza'];
 
 
-  if (!empty($_SESSION['erabiltzailea']) && isset($_SESSION['erabiltzailea'])) {
-    if (!empty($_SESSION['pasahitza']) && isset($_SESSION['pasahitza'])) {
-        header("Location: index.php");
-        exit();
-    }
-  }
+    
+        $sql = "INSERT INTO erabiltzaileak (izena, pasahitza)
+                VALUES ('$erabiltzailea', '$pasahitza')";
+        
+        if ($conn->query($sql) === TRUE) {
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    
+
+// Cerrar la conexión
+$conn->close();
+?>
+
+

@@ -6,6 +6,11 @@
         header("Location: babestu.php");
         exit();
     }
+
+    if (empty($_SESSION['erabiltzailea']) && empty($_SESSION['pasahitza'])) {
+        header("Location: babestu.php");
+        exit();      
+    };
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,14 +21,7 @@
 </head>
 <body>
     <h1>
-        <?php
-        if (empty($_SESSION['erabiltzailea']) && empty($_SESSION['pasahitza'])) {
-                header("Location: babestu.php");
-                exit();      
-            }else {
-                echo "Kaixo " . $_SESSION['erabiltzailea'];
-            }   
-        ?>
+        <?php echo $_SESSION['erabiltzailea'];?>
     </h1>
     <br><br>
     <form action="index.php" method="post">
