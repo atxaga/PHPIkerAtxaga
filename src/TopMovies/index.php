@@ -67,7 +67,7 @@
 </head>
 <body>
 
-    <form action="" method="post">
+    <form action="form.php" method="post">
         <h2>Top Movies</h2>
         <label for="izena">Izena</label>
         <input type="text" name="izena" id="izena" placeholder="sartu filmaren izena">
@@ -88,7 +88,7 @@
             <option value="5">5</option>
         </select>
 
-        <button type="submit">Bidali</button>
+        <button type="submit" name="bidali">Bidali</button>
     </form>
 
 </body>
