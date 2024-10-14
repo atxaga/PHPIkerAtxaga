@@ -1,3 +1,17 @@
+<?php  
+    session_start();
+
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        header("Location: login/babestu.php");
+        exit();
+    }
+
+    if (empty($_SESSION['erabiltzailea']) && empty($_SESSION['pasahitza'])) {
+        header("Location: login/babestu.php");
+        exit();      
+    };
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,8 +80,8 @@
     </style>
 </head>
 <body>
-
-    <form action="form.php" method="post">
+    <h1>Kaixo <?php echo " " . $_SESSION["erabiltzailea"]?>!</h1>
+    <form action="insertMovies/form.php" method="post">
         <h2>Top Movies</h2>
         <label for="izena">Izena</label>
         <input type="text" name="izena" id="izena" placeholder="sartu filmaren izena">
@@ -89,7 +103,11 @@
         </select>
 
         <button type="submit" name="bidali">Bidali</button>
+        
     </form>
-
+    <form action="index.php" method="post">
+        <button type="submit" name="logout">logout</button>
+    </form>
+    <a href="insertMovies/viewMovies.php">Sartutako filmak</a>
 </body>
 </html>
