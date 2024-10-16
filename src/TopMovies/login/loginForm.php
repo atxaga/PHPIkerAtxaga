@@ -2,28 +2,32 @@
 include("../connect_database.php");
 session_start();
 
-$erabiltzaileaForm = $_POST['erabiltzailea'] ?? null; // Usar null coalescing para evitar errores
+$erabiltzaileaForm = $_POST['erabiltzailea'] ?? null; 
 $pasahitzaForm = $_POST['pasahitza'] ?? null;
 
 if ($erabiltzaileaForm && $pasahitzaForm) {
-    // Recuperar todos los usuarios
-    $erabiltzaileakSQL = $conn->prepare("SELECT * FROM erabiltzaileak");
+    
+    $erabiltzaileakSQL = $conn->prepare("SELECT * FROM erabiltzaileak WHERE izena = ? AND pasahitza = ?");
+    $erabiltzaileakSQL->bind_param("ss", $erabiltzaileaForm, $pasahitzaForm);
     $erabiltzaileakSQL->execute();
     $result = $erabiltzaileakSQL->get_result();
-
-    // Comprobar si las credenciales coinciden
-    $usuarioEncontrado = false; // Bandera para verificar si el usuario fue encontrado
-
-    foreach ($result as $erabiltzailea) {
-        if ($erabiltzailea["izena"] == $erabiltzaileaForm && $erabiltzailea["pasahitza"] == $pasahitzaForm) {
-            $_SESSION['erabiltzaileaId'] = $erabiltzailea['id'];
-            header("Location: index.php");
-            exit();
+   
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            if ($row['izena'] == $erabiltzaileaForm && $row['pasahitza'] == $pasahitzaForm) {
+                $_SESSION['erabiltzaileaId'] = $row['id']; 
+                $_SESSION['erabiltzailea'] = $row['izena'];
+                $_SESSION['pasahitza'] = $row['pasahitza'];
+                header("Location: ../index.php");
+                exit();
+            }
         }
+    } else {
+        echo "Erabiltzailea edo pasahitza okerra da.";
     }
 
-    // Si no se encontró el usuario
-    echo "Ez da erabiltzaile horretatik aurkitu.";
+    // Cerrar la declaración preparada
+    $erabiltzaileakSQL->close();
 } else {
     echo "Sartu erabiltzailea eta pasahitza.";
 }
@@ -31,3 +35,4 @@ if ($erabiltzaileaForm && $pasahitzaForm) {
 // Cerrar la conexión
 $conn->close();
 ?>
+

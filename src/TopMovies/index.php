@@ -10,7 +10,7 @@
     if (empty($_SESSION['erabiltzailea']) && empty($_SESSION['pasahitza'])) {
         header("Location: login/babestu.php");
         exit();      
-    };
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +23,17 @@
             font-family: Arial, sans-serif;
             background-color: #f4f7f8;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
         }
 
         form {
@@ -35,6 +42,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 300px;
+            margin-bottom: 15px;
         }
 
         input[type="text"],
@@ -77,17 +85,31 @@
             display: block;
             margin-bottom: 5px;
         }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <h1>Kaixo <?php echo " " . $_SESSION["erabiltzailea"]?>!</h1>
+    <h1>Kaixo <?php echo $_SESSION["erabiltzailea"]; ?>!</h1>
+    
     <form action="insertMovies/form.php" method="post">
         <h2>Top Movies</h2>
         <label for="izena">Izena</label>
-        <input type="text" name="izena" id="izena" placeholder="sartu filmaren izena">
+        <input type="text" name="izena" id="izena" placeholder="Sartu filmaren izena">
 
         <label for="isan">Isan zenbakia</label>
-        <input type="number" name="isan" id="isan" placeholder="sartu filmaren isan zenbakia">
+        <input type="number" name="isan" id="isan" placeholder="Sartu filmaren isan zenbakia">
 
         <label for="estrenoa">Estrenaldi data</label>
         <input type="date" name="estrenoa" id="estrenoa">
@@ -103,11 +125,13 @@
         </select>
 
         <button type="submit" name="bidali">Bidali</button>
-        
     </form>
+
     <form action="index.php" method="post">
-        <button type="submit" name="logout">logout</button>
+        <button type="submit" name="logout">Logout</button>
     </form>
-    <a href="insertMovies/viewMovies.php">Sartutako filmak</a>
+
+    <a href="insertMovies/viewMovies.php">Sartutako filmak ikusi</a>
 </body>
 </html>
+

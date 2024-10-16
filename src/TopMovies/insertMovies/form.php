@@ -10,6 +10,7 @@ $isan = null;
 $estrenoa = null;
 $puntuazioa = null;
 $kontIsanHutsik = 0;
+$isanDago = 0;
 $erabiltzailea =  get_Erabiltzailea();
 $_SESSION['erabiltzaileaId'] = $erabiltzailea;
 
@@ -22,12 +23,14 @@ if (isset($_POST['bidali'])) {
     puntuazioa();
 
     if ($kontIsanHutsik == 0) {
-        $insertSQL = $conn->prepare("INSERT INTO Movies (izena, isan, estrenoa, puntuazioa, erabiltzailea) VALUES (?, ?, ?, ?, ?)");
-        $insertSQL->bind_param("sssss", $izena, $isan, $estrenoa, $puntuazioa, $erabiltzailea);
-        $insertSQL->execute();
+        if ($isan != null) {
+            $insertSQL = $conn->prepare("INSERT INTO movies (izena, isan, estrenoa, puntuazioa, erabiltzailea) VALUES (?, ?, ?, ?, ?)");
+            $insertSQL->bind_param("sssss", $izena, $isan, $estrenoa, $puntuazioa, $erabiltzailea);
+            $insertSQL->execute();
     
-        header("Location: ../index.php");
-        exit();
+            header("Location: ../index.php");
+            exit();
+        }
     }
 }
 
@@ -38,7 +41,7 @@ function get_Erabiltzailea() {
     $selectIzenaSQL->execute();
     $result = $selectIzenaSQL->get_result();
     if ($row = $result->fetch_assoc()) {
-        return $row['id']; // O el campo que necesites, asegúrate de que 'id' sea correcto
+        return $row['id']; 
     }
 }
 
@@ -47,19 +50,31 @@ function izena() {
     if (isset($_POST['izena']) && !empty($_POST['izena'])) {
         $izena = $_POST['izena'];
     } else {
-        echo "Oker sartu duzu izena";
+        //echo "Oker sartu duzu izena";
     }
 }
 
 function isan() {
     global $isan;
     global $kontIsanHutsik;
+    global $isanDago;
     if (isset($_POST['isan']) && !empty($_POST['isan'])) {
-        if (strlen($_POST['isan']) == 8) {
-            $isan = $_POST['isan'];
+        isan_dago();
+        if ($isanDago == 0) {
+            if (strlen($_POST['isan']) == 8) {
+                $isan = $_POST['isan'];
+            } else {
+                echo "Isan zenbakia oker sartu duzu, 8 digitu eduki behar ditu";
+            } 
         } else {
-            echo "Isan zenbakia oker sartu duzu, 8 digitu eduki behar ditu";
-        } 
+            if (isset($_POST['izena']) && !empty($_POST['izena'])) {
+                izena_puntuazioa_update();
+            } else {
+                filma_ezabatu();
+            }
+            
+        }
+        
     } else {
         if (isset($_POST['izena']) && !empty($_POST['izena'])) {
             $kontIsanHutsik++;
