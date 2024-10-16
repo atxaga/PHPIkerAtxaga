@@ -124,13 +124,14 @@
             <option value="5">5</option>
         </select>
 
+        <label for="irudia">Irudia: <input type="file" name="irudia" id="irudia"></label>
         <button type="submit" name="bidali">Bidali</button>
     </form>
 
     <form action="index.php" method="post">
         <button type="submit" name="logout">Logout</button>
     </form>
-
+    
     <a href="insertMovies/viewMovies.php">Sartutako filmak ikusi</a>
 </body>
 </html>

@@ -21,11 +21,12 @@ if (isset($_POST['bidali'])) {
     isan();
     estrenoa();
     puntuazioa();
+    $irudia = $_POST['irudia'];
 
     if ($kontIsanHutsik == 0) {
         if ($isan != null) {
-            $insertSQL = $conn->prepare("INSERT INTO movies (izena, isan, estrenoa, puntuazioa, erabiltzailea) VALUES (?, ?, ?, ?, ?)");
-            $insertSQL->bind_param("sssss", $izena, $isan, $estrenoa, $puntuazioa, $erabiltzailea);
+            $insertSQL = $conn->prepare("INSERT INTO movies (izena, isan, estrenoa, puntuazioa, erabiltzailea, irudia) VALUES (?, ?, ?, ?, ?, ?)");
+            $insertSQL->bind_param("ssssss", $izena, $isan, $estrenoa, $puntuazioa, $erabiltzailea, $irudia);
             $insertSQL->execute();
     
             header("Location: ../index.php");
