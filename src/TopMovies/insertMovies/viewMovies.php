@@ -64,19 +64,19 @@
             $selectIzenaSQL->execute();
             $result = $selectIzenaSQL->get_result();
             echo "<h1>Filmen zerrenda</h1>";
-            echo "<div class='movie-list'>"; // Comienza la lista de películas
+            echo "<div class='movie-list'>"; 
             while ($row = $result->fetch_assoc()) {
-                echo "<div class='movie-card'>"; // Tarjeta para cada película
+                echo "<div class='movie-card'>"; 
                 echo "<h2>Filma:</h2>"; 
                 echo "<p><strong>Izena:</strong> " . $row['izena'] . "</p>";
                 echo "<p><strong>Isan zenbakia:</strong> " . $row['isan'] . "</p>";
                 echo "<p><strong>Estrenu data:</strong> " . $row['estrenoa'] . "</p>";
                 echo "<p><strong>Puntuazioa:</strong> " . $row['puntuazioa'] . "</p>";
                 echo "<img class='movie-image' src='../irudiak/". $row['irudia']."' alt='Irudia de " . $row['izena'] . "'>";
-                echo "</div>"; // Cierra la tarjeta
+                echo "</div>"; 
             } 
-            echo "</div>"; // Cierra la lista de películas
-
+            echo "</div>";
+            
             $selectIzenaSQL->close();
             $conn->close();
         ?>

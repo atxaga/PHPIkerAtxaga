@@ -2,6 +2,9 @@
 include("../connect_database.php");
 session_start();
 
+$erabiltzailea =  get_Erabiltzailea();
+$_SESSION['erabiltzaileaId'] = $erabiltzailea;
+
 $erabiltzaileaForm = $_POST['erabiltzailea'] ?? null; 
 $pasahitzaForm = $_POST['pasahitza'] ?? null;
 
@@ -25,14 +28,22 @@ if ($erabiltzaileaForm && $pasahitzaForm) {
     } else {
         echo "Erabiltzailea edo pasahitza okerra da.";
     }
-
-    // Cerrar la declaración preparada
     $erabiltzaileakSQL->close();
 } else {
     echo "Sartu erabiltzailea eta pasahitza.";
 }
 
-// Cerrar la conexión
+function get_Erabiltzailea() {
+    global $conn;
+    $selectIzenaSQL= $conn->prepare("SELECT * FROM erabiltzaileak where izena = ?");
+    $selectIzenaSQL->bind_param("s", $_SESSION['erabiltzailea']);
+    $selectIzenaSQL->execute();
+    $result = $selectIzenaSQL->get_result();
+    if ($row = $result->fetch_assoc()) {
+        return $row['id']; 
+    }
+}
+
 $conn->close();
 ?>
 
