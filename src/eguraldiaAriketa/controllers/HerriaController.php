@@ -6,27 +6,52 @@ use Models\Herria;
 
 class HerriaController {
 
-    public function listAll() {
+    public function listAll(){
         $herria = new Herria();
         $herriak = $herria->getAll();
-        $herriaId = $herriak[0]['id'];
-        $datuak = $this->getDatuak($herriaId);
-        //echo "<pre>" ; var_dump($herriak); "</pre>";
+        //echo "<pre>"; var_dump($herriak);echo "</pre>";
         require_once '../views/herri-zerrenda.php';
+        //require_once '../views/herri-zerrenda-iragarpen-egunak-lortzeko.php';
     }
 
-    public function getDatuak($id) {
-        $herria = new Herria();
-        $herriak = $herria->getDatuak($id);
-        return $herriak;
-    }
-
-    public function kudeatu() {
+    public function kudeatu(){
         $herria = new Herria();
         $herriak = $herria->getAll();
-        $herriaId = $herriak[0]['id'];
-        $datuak = $this->getDatuak($herriaId);
-        //echo "<pre>" ; var_dump($herriak); "</pre>";
-        require_once '../views/herri-kudeaketa.php';
+        //echo "<pre>"; var_dump($herriak);echo "</pre>";
+        //require_once '../views/herri-zerrenda.php';
+        require_once '../views/herrien-kudeaketa.php';
     }
+
+    public function herriaGehitu($izena){
+        //var_dump($izena);
+        $herria = new Herria();      
+        $herria->create($izena);
+        $this->kudeatu();  
+        //$herriak = $herria->getAll();
+        //echo "<pre>"; var_dump($herriak);echo "</pre>";
+        //require_once '../views/herrien-kudeaketa.php';
+    }
+
+    public function herriaEzabatu($id){
+        //var_dump($izena);
+        $herria = new Herria();
+        $herria->delete($id);
+        $this->kudeatu();
+        //$herriak = $herria->getAll();
+        //echo "<pre>"; var_dump($herriak);echo "</pre>";
+        //require_once '../views/herri-zerrenda.php';
+        //require_once '../views/herrien-kudeaketa.php';
+    }
+
+    public function herriaAldatu($id, $izenBerria){
+        //var_dump($izena);
+        $herria = new Herria();
+        $herria->update($id, $izenBerria);
+        $this->kudeatu();
+        //$herriak = $herria->getAll();
+        //echo "<pre>"; var_dump($herriak);echo "</pre>";
+        //require_once '../views/herri-zerrenda.php';
+        //require_once '../views/herrien-kudeaketa.php';
+    }    
+
 }

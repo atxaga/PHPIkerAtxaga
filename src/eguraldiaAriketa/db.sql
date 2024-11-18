@@ -1,30 +1,31 @@
-CREATE DATABASE IF NOT EXISTS eguraldia;
+CREATE DATABASE eguraldia;
+
 USE eguraldia;
 
-CREATE TABLE IF NOT EXISTS herria (
+CREATE TABLE herria (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    izena VARCHAR(255) NOT NULL
+    izena VARCHAR(100) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS iragarpena (
+CREATE TABLE iragarpena_eguna (
     id INT AUTO_INCREMENT PRIMARY KEY,
     herria_id INT,
-    eguna DATE NOT NULL,
-    iragarpena_testua VARCHAR(255),
-    eguraldia VARCHAR(255),
+    eguna DATE,  /* DATE formatua: YYYY-MM-DD */
+    iragarpen_testua VARCHAR(250),
+    eguraldia INT,   /* (1:oskarbi, 2:hodei-gutxi, ...) */
     tenperatura_minimoa INT,
     tenperatura_maximoa INT,
     FOREIGN KEY (herria_id) REFERENCES herria(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS iragarpena_orduko (
+CREATE TABLE iragarpena_orduko (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    iragarpena_id INT,
-    ordua TIME NOT NULL,
-    eguraldia VARCHAR(255),
+    iragarpena_eguna_id INT,
+    ordua TIME,  /* HH:MM:SS */
+    eguraldia INT,   /* (1:oskarbi, 2:hodei-gutxi, ...) */
     tenperatura INT,
     prezipitazioa INT,
-    haizea_nondik VARCHAR(255),
+    haizea_nondik INT,
     haizea_kmh INT,
-    FOREIGN KEY (iragarpena_id) REFERENCES iragarpena(id) ON DELETE CASCADE
+    FOREIGN KEY (iragarpena_eguna_id) REFERENCES iragarpena_eguna(id) ON DELETE CASCADE
 );
