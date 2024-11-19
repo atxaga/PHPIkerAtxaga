@@ -6,35 +6,40 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="kotxeaJabeariAsignatu.php" method="get">
+    
         <h1>Jabe zerrenda</h1>
         <ul>
-        <select id="selectJabea" name="selectJabea">
-        <option value="">--Aukeratu Jabea--</option>
         <?php
         
-            foreach ($jabeak as $jabea) {
-                echo "<option value=".$jabea['id'].">".$jabea['izena']."</option>";
+            foreach ($kotxeak as $kotxea) {
+                echo "<form action='kotxeaJabeariAsignatu.php' method='post'>";
+                echo "<li>".$kotxea['matrikula']."</li>";
+                foreach ($jabeak as $jabea) {
+                    if ($jabea['id'] == $kotxea['jabea_id']) {
+                        echo "Oraingo jabea: " . $jabea['izena']. "<br><br>";
+                    }
+                }
+                ?>
+                <select id="selectJabea" name="selectJabea">
+                <option value="">--Aukeratu Jabea--</option>
+                <?php
+                    foreach ($jabeak as $jabea) {
+                            echo "<option value=".$jabea['id'].">".$jabea['izena']."</option>";
+                    }
+                    echo "<input type='submit' name='asignatu' value='Asignatu'>";
+                    echo "<input type='hidden' name='selectKotxea' value='".$kotxea['id']."'>";
+                ?>
+                </select><br><br>
+                </form>
+                <hr>
+                <?php
             }
         ?>
-        </select>
         </ul>
         <input type="submit" name="selectIzena" value="Kotxen lista ikusi">
         <h1>Kotxe Zerrenda</h1>
         <ul>
-            <select id="selectKotxea" name="selectKotxea">
-            <option value="">--Aukeratu Kotxea--</option>
-        <?php
             
-            foreach ($kotxeak as $kotxea) {
-                echo "<option value=".$kotxea['id'].">".$kotxea['modeloa']."</option>";
-            }
-           
-        
-        ?>
-        </select>
         </ul>
-        <input type="submit" value="Asignatu">
-    </form>
 </body>
 </html>

@@ -18,6 +18,9 @@ class KotxeaController {
     public function asignatu($idKotxea, $idJabea) {
         $kotxea = new Kotxea();
         $kotxea->asignatuKotxea($idKotxea, $idJabea);
+        $kotxeak = $kotxea->getAll();
+        $jabea = new Jabea();
+        $jabeak = $jabea->getAll();
         require_once '../views/jabe-zerrenda.php';
     }
 

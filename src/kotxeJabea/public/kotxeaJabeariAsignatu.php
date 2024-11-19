@@ -13,15 +13,22 @@ require_once '../controllers/KotxeaController.php';
 use Controllers\JabeaController;
 use Controllers\KotxeaController;
 use Models\Kotxea;
-
-if (isset($_POST('selectIzena'))) {
+var_dump($_POST['selectIzena']);
+/*if (isset($_POST['selectIzena'])) {
 
     $idKotxea = $_REQUEST['selectKotxea'];
     $kotxeaController = new KotxeaController();
     $kotxeaController->kotxeList($idJabea);
 
-}
+}*/
 
 
 $idJabea = $_REQUEST['selectJabea'];
+$idKotxea = $_REQUEST['selectKotxea'];
+if (isset($_POST['asignatu'])) {
+    $kotxeaController = new KotxeaController();
+    $kotxeaController->asignatu($idKotxea, $idJabea);
+}
+
+
 
