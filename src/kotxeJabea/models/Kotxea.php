@@ -36,20 +36,22 @@ class Kotxea {
         return $stmt->fetchAll();
     }
 
-    /*public function create($izena, $dni) {
-        $query = "INSERT INTO kotxeak SET DNI = :DNI, izena = :izena";
+    public function create($modeloa, $matrikula, $matrikulaData, $itv) {
+        $query = "INSERT INTO kotxeak SET modeloa = :modeloa, matrikula = :matrikula, matrikulazio_data = :matrikulaData, itv = :itv";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(":DNI", $dni, PDO::PARAM_STR);
-        $stmt->bindParam(":izena", $izena, PDO::PARAM_STR);
+        $stmt->bindParam(":modeloa", $modeloa, PDO::PARAM_STR);
+        $stmt->bindParam(":matrikula", $matrikula, PDO::PARAM_STR);
+        $stmt->bindParam(":matrikulaData", $matrikulaData, PDO::PARAM_STR);
+        $stmt->bindParam(":itv", $itv, PDO::PARAM_STR);
         return $stmt->execute();
-    }*/
+    }
 
-    /*public function delete($id) {
+    public function delete($id) {
         $query = "DELETE FROM kotxeak WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         return $stmt->execute();
-    }*/
+    }
 
     /*public function update($id, $izenBerria) {
         $query = "UPDATE kotxeak SET izena = :izenBerria WHERE id = :id";

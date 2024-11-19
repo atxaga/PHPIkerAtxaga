@@ -19,7 +19,7 @@
         <br>
         Aukeratutako herriari izena aldatu. Izen berria: <input type="text" name="izenBerria"/>
         <button type="submit" formaction="herria-aldatu.php">Aldatu</button><br>
-        Aukeratutako herriaren <button type="submit" formaction="iragarpenak-kudeatu.php">iragarpenak kudeatu</button>
+        Aukeratutako herriaren <button type="submit" formaction="iragarpena-kudeatu.php">iragarpenak kudeatu</button>
     </form>
     <hr>
     <!-- herria create -->

@@ -16,7 +16,7 @@ class IragarpenEgunaController {
         $herriaModel = new Herria();
         $herria = $herriaModel->getId($herria_id);
         // view
-        require_once __DIR__ . '/../views/iragaren-egunak-zerrenda.php';        
+        require_once '../views/iragarpen-egunak-zerrenda.php';        
     }  
 
     // herri guztietako iragarpen egun guztiak
@@ -25,7 +25,7 @@ class IragarpenEgunaController {
         $egunak = $iragarpenEguna->getAll();
         $herria = "Herri guztiak";
         // view
-        require_once __DIR__ . '/../views/iragaren-egunak-zerrenda.php';        
+        require_once '../views/iragarpen-egunak-zerrenda.php';        
     }    
 
     // iragarpena kudeatu
@@ -36,7 +36,7 @@ class IragarpenEgunaController {
         $herriaModel = new Herria();
         $herria = $herriaModel->getId($herria_id);    
         // view
-        require_once __DIR__ . '/../views/iragaren-egunak-kudeaketa.php';
+        require_once '../views/iragarpen-egunak-kudeaketa.php';
     }
 
     public function iragarpenaGehitu($herria_id, $eguna, $iragarpen_testua, $eguraldia, $tenperatura_minimoa, $tenperatura_maximoa) {

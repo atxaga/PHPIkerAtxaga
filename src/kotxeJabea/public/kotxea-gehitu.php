@@ -22,11 +22,13 @@ if (isset($_POST['selectIzena'])) {
 }
 
 
-$idJabea = $_REQUEST['selectJabea'];
-$idKotxea = $_REQUEST['selectKotxea'];
-if (isset($_POST['asignatu'])) {
+$modeloa = $_REQUEST['modeloa'];
+$matrikula = $_REQUEST['matrikula'];
+$matrikulaData = $_REQUEST['matrikulazioData'];
+$itv = $_REQUEST['itv'];
+if (isset($_POST['kotxeaGehitu'])) {
     $kotxeaController = new KotxeaController();
-    $kotxeaController->asignatu($idKotxea, $idJabea);
+    $kotxeaController->kotxeaGehitu($modeloa, $matrikula, $matrikulaData, $itv);
 }
 
 

@@ -19,7 +19,7 @@ class HerriaController {
         $herriak = $herria->getAll();
         //echo "<pre>"; var_dump($herriak);echo "</pre>";
         //require_once '../views/herri-zerrenda.php';
-        require_once '../views/herrien-kudeaketa.php';
+        require_once '../views/herri-kudeaketa.php';
     }
 
     public function herriaGehitu($izena){
